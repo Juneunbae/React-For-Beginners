@@ -3,12 +3,18 @@
     <body>
         <div id="root"></div>
     </body>
+    <!-- REACTJS는 interactivity의 원동력 -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <!-- REACTDOM은 React element를 가져다가 HTML로 바꾸는 역할 -->
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script>
         // JavaScript를 이용해 element를 생성했고, React가 그걸 HTML로 번역
         const root = document.getElementById('root');
-        const span = React.createElement('h3', { onMouseEnter: () => console.log('mouse enter') }, "Hello i'm span");
+
+        // 1번째 Argument는 HTML 태그
+        // 2번째 Argument는 속성이 포함된 object
+        // 3번째 content
+        const h3 = React.createElement('h3', { onMouseEnter: () => console.log('mouse enter') }, "Hello i'm span");
 
         const btn = React.createElement('button', { onClick: () => console.log('im clicked') }, 'Click me');
 
