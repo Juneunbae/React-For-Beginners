@@ -11,25 +11,25 @@
     <!-- Babel -->
     <script type="text/babel">
         const root = document.getElementById('root');
-
-        function Title () {
-            return <h3 id="title" onMouseEnter={ () => console.log("mouse enter") }>Hello i'm title</h3>;
+        let counter = 0;
+        function countUp() {
+            counter += 1;
+            // counter가 추가될 때마다 다시 render
+            render();
         }
 
-        // JSX 적용
-        const Button = () => (
-            <button style={{backgroundColor: "tomato"}} onClick={() => console.log('im clicked')}>Click me</button>
-        )
+        // render 함수 생성
+        function render() {
+            ReactDOM.render(<Container />, root);
+        }
 
-        // html 요소 안에 사용하려면 함수로 만들어줘야함
-        // 컴포넌트의 첫 글자는 반드시 대문자
         const Container = () => (
             <div>
-                <Title />
-                <Button />
+                <h3>Total Clicks: {counter}</h3>
+                <button onClick={countUp}>Click me</button>
             </div>
         )
 
-        ReactDOM.render(<Container />, root);
+        render();
     </script>
 </html>
