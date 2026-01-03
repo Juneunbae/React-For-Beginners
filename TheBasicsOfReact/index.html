@@ -11,25 +11,17 @@
     <!-- Babel -->
     <script type="text/babel">
         const root = document.getElementById('root');
-        let counter = 0;
-        function countUp() {
-            counter += 1;
-            // counter가 추가될 때마다 다시 render
-            render();
+
+        function App() {
+            const [counter, modifier] = React.useState(0);
+            return (
+                <div>
+                    <h3>Total Clicks: {counter}</h3>
+                    <button>Click me</button>
+                </div>
+            );
         }
 
-        // render 함수 생성
-        function render() {
-            ReactDOM.render(<Container />, root);
-        }
-
-        const Container = () => (
-            <div>
-                <h3>Total Clicks: {counter}</h3>
-                <button onClick={countUp}>Click me</button>
-            </div>
-        )
-
-        render();
+        ReactDOM.render(<App />, root);
     </script>
 </html>
