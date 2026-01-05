@@ -1,24 +1,24 @@
 <!doctype html>
 <html lang="ko">
 <body>
-<div id="root"></div>
+    <div id="root"></div>
 </body>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<!-- props 타입들을 검사할 수 있는 js -->
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script type="text/babel">
-    function Btn({ text, onClick }) {
-        console.log(text, "was rendered")
+    function Btn({ text, fontSize = 12}) {
         return (
             <button
-                onClick = {onClick}
                 style = {{
                     backgroundColor: 'tomato',
                     color: 'white',
                     padding: '10px 20px',
                     border: 'none',
                     borderRadius: 10,
-                    fontSize: 16
+                    fontSize: {fontSize}
                 }}
             >
             {text}
@@ -26,16 +26,16 @@
         )
     }
 
-    // re-render가 되지 않는 요소를 기억할 수 있음
-    const MemorizedBtn = React.memo(Btn)
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number
+    }
 
     function App() {
-        const [value, setValue] = React.useState("Save Changes")
-        const changeValue = () => setValue("Reverse Changes")
         return (
             <div>
-                <MemorizedBtn text={value} onClick={changeValue} />
-                <MemorizedBtn text="Continue"/>
+                <Btn text="Save Changes" fontSize={18} />
+                <Btn text="Continue" />
             </div>
         )
     }
